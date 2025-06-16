@@ -1,11 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+class Home extends CI_Controller {
 
-class Home extends CI_Controller
-{
-
-	function __construct()
-	{
+	function __construct() {
 
 		parent::__construct();
 		$this->load->helper('cookie');
@@ -13,18 +10,43 @@ class Home extends CI_Controller
 		$this->load->helper('url');
 	}
 
-	public function index()
-	{
+	public function index() {
 
 		$dados['titulo'] = "HEAD.AI";
 
 		$this->load->view('home', $dados);
 	}
 
-	public function loadCasoClinico()
-	{
+	public function loadCasoClinico() {
 
 		$dados['titulo'] = "HEAD.AI - Caso Clínico";
+
+		// Exemplo de dados do caso clínico:
+		// Cefaleia atribuída a aneurisma sacular não roto
+		// Paciente do sexo feminino, 45 anos, professora, comparece à emergência queixando-se de cefaleia intensa e persistente há 5 dias.
+
+		// História da Doença Atual:
+		// A paciente relata início súbito de cefaleia holocraniana, descrita como "a pior dor da vida", com intensidade 9/10, associada a fotofobia e náuseas, mas sem vômitos. Negava trauma craniano recente, febre ou infecções. Refere que a dor não melhora com analgésicos comuns (paracetamol e dipirona). Relata ainda que, nos últimos 2 meses, apresentou episódios recorrentes de cefaleia leve a moderada, que atribuía ao estresse no trabalho.
+
+		// História Pregressa:
+		// Hipertensão arterial sistêmica controlada com losartana. Nega tabagismo, etilismo ou uso de drogas ilícitas. Sem história prévia de cefaleias crônicas ou enxaquecas.
+
+		// Exame Físico:
+
+		// Geral: consciente, orientada, hidratada, em regular estado geral.
+
+		// Neurológico: pupilas isocóricas e fotoreagentes, sem déficits motores ou sensitivos. Reflexos normais. Sinal de meningite negativo (rigidez de nuca ausente).
+
+		// Outros sistemas: sem alterações relevantes.
+
+		// Exames Complementares:
+
+		// Tomografia computadorizada (TC) de crânio sem contraste: sem sinais de hemorragia subaracnoidea ou lesões expansivas.
+
+		// Angiografia por ressonância magnética (ARM): identificado aneurisma sacular de 7 mm na artéria cerebral média direita, sem sinais de ruptura.
+
+		// Punção lombar: líquido cefalorraquidiano (LCR) claro, com pressão de abertura normal, sem hemácias ou xantocromia.
+
 
 		$this->load->view('casoclinico/home', $dados);
 	}
@@ -40,45 +62,46 @@ class Home extends CI_Controller
 		} else {
 			echo 'Método não suportado.';
 		}
-
 	}
 
 	public function processRequestGpt($prompt) {
 
-		$api_key = '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';
 		$assistant_id = 'asst_tX6oaxzV9MLjopGSs33AJcvv';
 
-		$thread_id = $this->createThread($api_key);
-		// $this->debugThread($api_key, $thread_id);
+		$this->load->config('openai');
+		$this->openai_key = $this->config->item('openai_api_key');
+
+		$thread_id = $this->createThread($this->openai_key);
+		// $this->debugThread($this->openai_key, $thread_id);
 
 		if (!$thread_id) {
 			echo "Nenhuma resposta encontrada.";
 			return;
 		}
 
-		$this->addMessageToThread($api_key, $thread_id, $prompt);
-		// $this->debugThreadMessages($api_key, $thread_id);
+		$this->addMessageToThread($this->openai_key, $thread_id, $prompt);
+		// $this->debugThreadMessages($this->openai_key, $thread_id);
 
-		$run_id = $this->runAssistant($api_key, $assistant_id, $thread_id);
-		// $this->debugRun($api_key, $thread_id, $run_id);
+		$run_id = $this->runAssistant($this->openai_key, $assistant_id, $thread_id);
+		// $this->debugRun($this->openai_key, $thread_id, $run_id);
 
 		if (!$run_id) {
 			echo "Nenhuma resposta encontrada.";
 			return;
 		}
 
-		$status = $this->waitForRunCompletion($api_key, $thread_id, $run_id);
+		$status = $this->waitForRunCompletion($this->openai_key, $thread_id, $run_id);
 
-		$response = $this->getAssistantResponse($api_key, $thread_id);
+		$response = $this->getAssistantResponse($this->openai_key, $thread_id);
 
 		echo $response;
 	}
 
-	private function createThread($api_key) {
+	private function createThread($openai_key) {
 
 		$url = 'https://api.openai.com/v1/threads';
 		$headers = [
-			'Authorization: Bearer ' . $api_key,
+			'Authorization: Bearer ' . $openai_key,
 			'Content-Type: application/json',
 			'OpenAI-Beta: assistants=v2'
 		];
@@ -104,11 +127,11 @@ class Home extends CI_Controller
 		return $response['id'] ?? null;
 	}
 
-	private function addMessageToThread($api_key, $thread_id, $message) {
+	private function addMessageToThread($openai_key, $thread_id, $message) {
 
 		$url = "https://api.openai.com/v1/threads/{$thread_id}/messages";
 		$headers = [
-			'Authorization: Bearer ' . $api_key,
+			'Authorization: Bearer ' . $openai_key,
 			'Content-Type: application/json',
 			'OpenAI-Beta: assistants=v2'
 		];
@@ -147,11 +170,11 @@ class Home extends CI_Controller
 
 
 
-	private function runAssistant($api_key, $assistant_id, $thread_id) {
+	private function runAssistant($openai_key, $assistant_id, $thread_id) {
 
 		$url = "https://api.openai.com/v1/threads/{$thread_id}/runs";
 		$headers = [
-			'Authorization: Bearer ' . $api_key,
+			'Authorization: Bearer ' . $openai_key,
 			'Content-Type: application/json',
 			'OpenAI-Beta: assistants=v2'
 		];
@@ -187,11 +210,11 @@ class Home extends CI_Controller
 	}
 
 
-	private function waitForRunCompletion($api_key, $thread_id, $run_id) {
+	private function waitForRunCompletion($openai_key, $thread_id, $run_id) {
 
 		$url = "https://api.openai.com/v1/threads/{$thread_id}/runs/{$run_id}";
 		$headers = [
-			'Authorization: Bearer ' . $api_key,
+			'Authorization: Bearer ' . $openai_key,
 			'OpenAI-Beta: assistants=v2'
 		];
 
@@ -223,11 +246,11 @@ class Home extends CI_Controller
 		return $status !== 'completed' ? "Nenhuma resposta encontrada." : null;
 	}
 
-	private function getAssistantResponse($api_key, $thread_id) {
+	private function getAssistantResponse($openai_key, $thread_id) {
 
 		$url = "https://api.openai.com/v1/threads/{$thread_id}/messages";
 		$headers = [
-			'Authorization: Bearer ' . $api_key,
+			'Authorization: Bearer ' . $openai_key,
 			'OpenAI-Beta: assistants=v2'
 		];
 
