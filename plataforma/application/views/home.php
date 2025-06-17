@@ -236,8 +236,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <?php $this->load->view('footer'); ?>
 
 <script>
-
-
+    document.addEventListener('DOMContentLoaded', function () {
+        const lang = getLang();
+        if (lang === 'en') {
+            document.querySelector('.left-section p').textContent = 'International Classification of Headache Disorders based on natural language processing';
+            document.querySelector('.cta-button').textContent = 'Start';
+        }
+    });
 </script>
 
 </html>

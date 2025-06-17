@@ -53,49 +53,52 @@ class Home extends CI_Controller {
 
 
 
-	public function classificar() {
+       public function classificar() {
 
-		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$text = $this->input->post('text', true);
-			$response = $this->processRequestGpt($text);
-			echo $response;
-		} else {
-			echo 'Método não suportado.';
-		}
-	}
+               $lang = $this->input->post('lang', true) ?: 'en';
 
-	public function processRequestGpt($prompt) {
+               if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                       $text = $this->input->post('text', true);
+                       $response = $this->processRequestGpt($text, $lang);
+                       echo $response;
+               } else {
+                       echo $lang === 'en' ? 'Method not supported.' : 'Método não suportado.';
+               }
+       }
 
-		$assistant_id = 'asst_tX6oaxzV9MLjopGSs33AJcvv';
+       public function processRequestGpt($prompt, $lang = 'en') {
+
+               $assistant_id = 'asst_tX6oaxzV9MLjopGSs33AJcvv';
 
 		$this->load->config('openai');
 		$this->openai_key = $this->config->item('openai_api_key');
 
-		$thread_id = $this->createThread($this->openai_key);
+               $thread_id = $this->createThread($this->openai_key);
 		// $this->debugThread($this->openai_key, $thread_id);
 
-		if (!$thread_id) {
-			echo "Nenhuma resposta encontrada.";
-			return;
-		}
+               if (!$thread_id) {
+                       echo $lang === 'en' ? 'No response found.' : 'Nenhuma resposta encontrada.';
+                       return;
+               }
 
-		$this->addMessageToThread($this->openai_key, $thread_id, $prompt);
+               $promptText = ($lang === 'en') ? 'Please answer in English: ' . $prompt : $prompt;
+               $this->addMessageToThread($this->openai_key, $thread_id, $promptText);
 		// $this->debugThreadMessages($this->openai_key, $thread_id);
 
-		$run_id = $this->runAssistant($this->openai_key, $assistant_id, $thread_id);
+               $run_id = $this->runAssistant($this->openai_key, $assistant_id, $thread_id);
 		// $this->debugRun($this->openai_key, $thread_id, $run_id);
 
-		if (!$run_id) {
-			echo "Nenhuma resposta encontrada.";
-			return;
-		}
+               if (!$run_id) {
+                       echo $lang === 'en' ? 'No response found.' : 'Nenhuma resposta encontrada.';
+                       return;
+               }
 
-		$status = $this->waitForRunCompletion($this->openai_key, $thread_id, $run_id);
+               $status = $this->waitForRunCompletion($this->openai_key, $thread_id, $run_id, $lang);
 
-		$response = $this->getAssistantResponse($this->openai_key, $thread_id);
+               $response = $this->getAssistantResponse($this->openai_key, $thread_id, $lang);
 
-		echo $response;
-	}
+               echo $response;
+       }
 
 	private function createThread($openai_key) {
 
@@ -210,7 +213,7 @@ class Home extends CI_Controller {
 	}
 
 
-	private function waitForRunCompletion($openai_key, $thread_id, $run_id) {
+       private function waitForRunCompletion($openai_key, $thread_id, $run_id, $lang) {
 
 		$url = "https://api.openai.com/v1/threads/{$thread_id}/runs/{$run_id}";
 		$headers = [
@@ -223,9 +226,9 @@ class Home extends CI_Controller {
 		$attempts = 0;
 
 		while ($status === 'queued' || $status === 'in_progress') {
-			if ($attempts >= $maxAttempts) {
-				return "Nenhuma resposta encontrada.";
-			}
+                       if ($attempts >= $maxAttempts) {
+                               return $lang === 'en' ? 'No response found.' : 'Nenhuma resposta encontrada.';
+                       }
 
 			sleep(3);
 			$ch = curl_init($url);
@@ -243,10 +246,10 @@ class Home extends CI_Controller {
 			$attempts++;
 		}
 
-		return $status !== 'completed' ? "Nenhuma resposta encontrada." : null;
-	}
+               return $status !== 'completed' ? ($lang === 'en' ? 'No response found.' : 'Nenhuma resposta encontrada.') : null;
+       }
 
-	private function getAssistantResponse($openai_key, $thread_id) {
+       private function getAssistantResponse($openai_key, $thread_id, $lang) {
 
 		$url = "https://api.openai.com/v1/threads/{$thread_id}/messages";
 		$headers = [
@@ -262,9 +265,9 @@ class Home extends CI_Controller {
 		$response = json_decode(curl_exec($ch), true);
 		curl_close($ch);
 
-		if (!isset($response['data']) || empty($response['data'])) {
-			return "Nenhuma resposta encontrada.";
-		}
+               if (!isset($response['data']) || empty($response['data'])) {
+                       return $lang === 'en' ? 'No response found.' : 'Nenhuma resposta encontrada.';
+               }
 
 		foreach ($response['data'] as $message) {
 			if ($message['role'] === 'assistant' && isset($message['content'][0]['text']['value'])) {
@@ -272,6 +275,7 @@ class Home extends CI_Controller {
 			}
 		}
 
-		return 'Nenhuma resposta encontrada.';
-	}
+               return $lang === 'en' ? 'No response found.' : 'Nenhuma resposta encontrada.';
+       }
 }
+
