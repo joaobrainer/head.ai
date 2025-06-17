@@ -178,7 +178,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div id="spinner" style="display: flex; align-items: center; justify-content: center; min-height: 380px;">
                 <div class="spinner-border text-primary" role="status">
                 </div>
-                <p style="margin-left: 10px; margin-top: 1rem">Classificando caso clínico...</p>
+                <p id="spinner-text" style="margin-left: 10px; margin-top: 1rem">Classificando caso clínico...</p>
             </div>
         </div>
         <div id="chatgpt-response" style="display: none; margin: 20px auto; padding: 20px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px; overflow-y: auto; max-height: 320px; height: 310px;">
@@ -205,13 +205,29 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <?php $this->load->view('footer'); ?>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const lang = getLang();
+        if (lang === 'en') {
+            document.getElementById('title').textContent = 'Insert the clinical case below';
+            document.getElementById('inputText').placeholder = 'Type here...';
+            document.getElementById('classificar').textContent = 'Classify';
+            document.getElementById('tentar-novamente').textContent = 'Try again';
+            document.querySelector('.button.back').textContent = 'Back';
+            document.getElementById('spinner-text').textContent = 'Classifying clinical case...';
+        }
+    });
+
     function processText() {
         var textArea = document.getElementById("inputText");
         var spinner = document.getElementById("div-spinner");
         var title = document.getElementById("title");
 
         if (textArea.value.trim() === "") {
-            alert("Por favor, insira um caso clínico antes de classificar.");
+            if (getLang() === 'en') {
+                alert("Please insert a clinical case before classifying.");
+            } else {
+                alert("Por favor, insira um caso clínico antes de classificar.");
+            }
         } else {
             textArea.style.display = "none";
             spinner.style.display = "block";
@@ -222,7 +238,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 type: "POST",
                 url: "<?= base_url('casoclinico/classificar') ?>",
                 data: {
-                    text: textArea.value
+                    text: textArea.value,
+                    lang: getLang()
                 },
                 success: function(response) {
                     spinner.style.display = "none";
@@ -232,7 +249,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                     $('#chatgpt-response').show();
                     console.log(response);
-                    if (response != "Nenhuma resposta encontrada.") {
+                    if (response != "Nenhuma resposta encontrada." && response != "No response found.") {
                         let treatedResponse = response;
                         
                         treatedResponse = treatedResponse.replace(/【[^】]*】/g, '');
@@ -242,8 +259,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         treatedResponse = treatedResponse.replace(/(\d+\.)/g, '<br><br>$1');
 
                         $('#response-content').html(treatedResponse);
-                    }else{
-                        $('#response-content').html('Não foi possível classificar o caso clínico. Tente novamente.');
+                    } else {
+                        if (getLang() === 'en') {
+                            $('#response-content').html('Unable to classify the clinical case. Please try again.');
+                        } else {
+                            $('#response-content').html('Não foi possível classificar o caso clínico. Tente novamente.');
+                        }
                     }
 
                     $('#tentar-novamente').show();
