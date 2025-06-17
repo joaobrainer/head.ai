@@ -55,7 +55,7 @@ class Home extends CI_Controller {
 
        public function classificar() {
 
-               $lang = $this->input->post('lang', true) ?: 'pt';
+               $lang = $this->input->post('lang', true) ?: 'en';
 
                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                        $text = $this->input->post('text', true);
@@ -66,7 +66,7 @@ class Home extends CI_Controller {
                }
        }
 
-       public function processRequestGpt($prompt, $lang = 'pt') {
+       public function processRequestGpt($prompt, $lang = 'en') {
 
                $assistant_id = 'asst_tX6oaxzV9MLjopGSs33AJcvv';
 

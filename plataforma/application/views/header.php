@@ -15,7 +15,7 @@
 
         <script>
             function getLang() {
-                return localStorage.getItem('lang') || 'pt';
+                return localStorage.getItem('lang') || 'en';
             }
 
             function toggleLang() {
@@ -34,7 +34,13 @@
                 btn.style.right = '10px';
                 btn.style.zIndex = '9999';
                 btn.className = 'btn btn-secondary';
-                btn.textContent = getLang() === 'en' ? 'PT' : 'EN';
+                btn.style.padding = '2px 4px';
+                const basePath = '<?= base_url('assets/images/languages/'); ?>';
+                const img = document.createElement('img');
+                img.width = 24;
+                img.src = basePath + (getLang() === 'en' ? 'br.svg' : 'us.svg');
+                img.alt = 'Toggle language';
+                btn.appendChild(img);
                 btn.onclick = toggleLang;
                 document.body.appendChild(btn);
             });
