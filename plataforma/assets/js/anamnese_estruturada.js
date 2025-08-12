@@ -1,4 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const lang = window.ANAMNESE_LANG === 'en' ? 'en' : 'pt-br';
+    const dict = {
+        'Sim': { en: 'Yes' },
+        'Não': { en: 'No' },
+        'Não se aplica': { en: 'Not applicable' },
+        'Leve': { en: 'Mild' },
+        'Moderada': { en: 'Moderate' },
+        'Severa': { en: 'Severe' },
+        'Abruptamente': { en: 'Abruptly' },
+        'Gradualmente': { en: 'Gradually' }
+    };
+
+    function t(str) {
+        return lang === 'en' && dict[str] ? dict[str].en : str;
+    }
+
     const questions = [
         /* Características da dor */
         {
@@ -609,7 +625,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function selectOption(question, value, btn) {
-        handleChange(question, value);
+        handleChange(question, t(value));
         const group = btn.parentElement;
         group.querySelectorAll('button').forEach(b => {
             b.classList.remove('btn-primary');
@@ -635,7 +651,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const h3 = document.createElement('h3');
         h3.className = 'mb-3';
-        h3.textContent = section;
+        h3.textContent = t(section);
         sectionDiv.appendChild(h3);
 
         questions.filter(item => item.section === section).forEach(item => {
@@ -644,7 +660,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const label = document.createElement('label');
             label.className = 'form-label fw-medium';
-            label.textContent = item.q;
+            label.textContent = t(item.q);
 
             if (item.help) {
                 const helpBtn = document.createElement('button');
@@ -660,7 +676,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (item.help) {
                 const helpDiv = document.createElement('div');
                 helpDiv.className = 'help-text small text-muted d-none mb-2';
-                helpDiv.textContent = item.help;
+                helpDiv.textContent = t(item.help);
                 qDiv.appendChild(helpDiv);
             }
 
@@ -671,7 +687,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const btn = document.createElement('button');
                     btn.type = 'button';
                     btn.className = 'btn btn-outline-primary mb-2';
-                    btn.textContent = opt;
+                    btn.textContent = t(opt);
                     btn.addEventListener('click', () => selectOption(item.q, opt, btn));
                     group.appendChild(btn);
                 });
@@ -699,7 +715,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('submitBtn').addEventListener('click', function () {
         const lines = questions.map(item => {
             const answer = formState[item.q] || '';
-            return `${item.q} ${answer}`.trim();
+            return `${t(item.q)} ${answer}`.trim();
         });
         const log = lines.join('\n');
         document.getElementById('log').textContent = log;
