@@ -866,8 +866,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('submitBtn').addEventListener('click', function () {
         const lines = questions.map(item => {
-            const answer = formState[item.q] || '';
-            return `${t(item.q)} ${answer}`.trim();
+            let answer = formState[item.q];
+            if (!answer && item.options && item.options.length === 2 && item.options.includes('Sim') && item.options.includes('Não')) {
+                answer = t('Não');
+            }
+            return `${t(item.q)} ${answer || ''}`.trim();
         });
         const log = lines.join('\n');
         document.getElementById('log').textContent = log;
