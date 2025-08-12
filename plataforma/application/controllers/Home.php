@@ -10,14 +10,28 @@ class Home extends CI_Controller {
 		$this->load->helper('url');
 	}
 
-	public function index() {
+        public function index() {
 
-		$dados['titulo'] = "HEAD.AI";
+                $dados['titulo'] = "HEAD.AI";
 
-		$this->load->view('home', $dados);
-	}
+                $this->load->view('home', $dados);
+        }
 
-	public function loadCasoClinico() {
+       public function menu() {
+
+               $dados['titulo'] = "HEAD.AI - Menu";
+
+               $this->load->view('menu', $dados);
+       }
+
+       public function loadAnamneseEstruturada() {
+
+               $dados['titulo'] = "HEAD.AI - Anamnese Estruturada";
+
+               $this->load->view('anamnese_estruturada', $dados);
+       }
+
+        public function loadCasoClinico() {
 
 		$dados['titulo'] = "HEAD.AI - Caso Clínico";
 
