@@ -825,13 +825,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             qDiv.appendChild(label);
 
-            if (item.help) {
-                const helpDiv = document.createElement('div');
-                helpDiv.className = 'help-text small text-muted d-none mb-2';
-                helpDiv.textContent = t(item.help);
-                qDiv.appendChild(helpDiv);
-            }
-
             if (item.options) {
                 const group = document.createElement('div');
                 group.className = 'btn-group flex-wrap';
@@ -856,6 +849,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 input.className = 'form-control';
                 input.addEventListener('input', e => handleChange(item.q, e.target.value));
                 qDiv.appendChild(input);
+            }
+
+            if (item.help) {
+                const helpDiv = document.createElement('div');
+                helpDiv.className = 'help-text small text-muted d-none mb-2';
+                helpDiv.textContent = t(item.help);
+                qDiv.appendChild(helpDiv);
             }
 
             sectionDiv.appendChild(qDiv);
