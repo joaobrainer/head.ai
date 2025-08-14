@@ -44,6 +44,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         margin-top: 50px;
         width: 100%;
         position: relative;
+        padding-bottom: 1rem;
     }
 
     .button {
@@ -143,6 +144,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         }
     }
 </style>
+
 <body>
     <div class="body">
         <div class="header-icons">
@@ -183,4 +185,3 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <script src="<?= base_url('assets/js/anamnese_estruturada.js') ?>"></script>
 
 </html>
-
