@@ -195,7 +195,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </div>
     </div>
     <div class="buttons-container">
-        <button class="button back">Voltar</button>
+        <a href="<?= base_url('menu') ?>" class="button back">Voltar</a>
         <button class="button primary" onclick="processText()" id="classificar">Classificar</button>
         <button class="button primary" id="tentar-novamente" style="display: none;">Tentar novamente</button>
 
@@ -284,9 +284,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         $('#classificar').show();
     });
 
-    $('.back').click(function() {
-        window.location.href = "<?= base_url('') ?>";
-    });
+
 </script>
 
 </html>

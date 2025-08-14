@@ -56,5 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['home'] = 'home/loadHome';
 $route['casoclinico'] = 'home/loadCasoClinico';
 $route['casoclinico/classificar'] = 'home/classificar';
+$route['menu'] = 'home/menu';
+$route['anamnese-estruturada'] = 'home/loadAnamneseEstruturada';
 
 

@@ -150,9 +150,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div>
 				<p>Classificação Internacional das Cefaleias baseada em processamento de linguagem natural</p>
 				<div class="text-center">
-					<a href="<?= base_url('casoclinico') ?>" class="cta-button">Iniciar</a>
-				</div>
-			</div>
+                                       <a href="<?= base_url('menu') ?>" class="cta-button">Iniciar</a>
+                                </div>
+                        </div>
 
 		</section>
 		<section class="right-section">
