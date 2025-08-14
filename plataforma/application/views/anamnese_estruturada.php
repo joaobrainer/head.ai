@@ -49,6 +49,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
         background-color: #0F1C3A;
     }
 
+    .side-graphics {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-right: 20px;
+        height: 100%;
+    }
+
     @media (max-width: 768px) {
         .buttons-container {
             flex-direction: column;
@@ -71,6 +83,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </style>
 <body>
     <div class="container py-4" id="questionnaire"></div>
+    <div class="side-graphics">
+        <img class="imagens-estaticas" style="height: 155px; width: 77px; margin-right: 10px;" src="<?= base_url('assets/images/background/14.png')  ?>" alt="">
+        <img class="imagens-estaticas" style="height: 77px; width: 77px; margin-right: 10px;" src="<?= base_url('assets/images/background/19.png')  ?>" alt="">
+        <img class="imagens-estaticas" style="height: 165px; width: 77px;" src="<?= base_url('assets/images/background/15.png')  ?>" alt="">
+        <img class="imagens-estaticas" style="height: 170px; width: 77px;" src="<?= base_url('assets/images/background/8.png')  ?>" alt="">
+    </div>
     <div class="buttons-container">
         <button class="button back" id="backBtn">Voltar</button>
         <button class="button primary" id="submitBtn">Classificar</button>
