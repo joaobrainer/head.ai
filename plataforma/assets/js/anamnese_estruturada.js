@@ -865,12 +865,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('submitBtn').addEventListener('click', function () {
-        const lines = questions.map(item => {
+        const lines = [];
+        questions.forEach(item => {
             let answer = formState[item.q];
-            if (!answer && item.options && item.options.length === 2 && item.options.includes('Sim') && item.options.includes('Não')) {
-                answer = t('Não');
+            if (item.options) {
+                if (!answer && item.options.length === 2 && item.options.includes('Sim') && item.options.includes('Não')) {
+                    answer = t('Não');
+                }
+                lines.push(`${t(item.q)} ${answer || ''}`.trim());
+            } else if (answer && answer.trim() !== '') {
+                lines.push(`${t(item.q)} ${answer}`.trim());
             }
-            return `${t(item.q)} ${answer || ''}`.trim();
         });
         const log = lines.join('\n');
         document.getElementById('log').textContent = log;
