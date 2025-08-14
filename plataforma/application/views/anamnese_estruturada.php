@@ -32,6 +32,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
         margin-right: 10px;
     }
 
+    h3 {
+        font-weight: 600;
+    }
+
     .buttons-container {
         display: flex;
         justify-content: center;
