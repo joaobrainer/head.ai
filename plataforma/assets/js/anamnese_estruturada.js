@@ -160,6 +160,20 @@ document.addEventListener('DOMContentLoaded', function () {
         'A cefaleia por esforço é desencadeada exclusivamente por atividade física vigorosa ou manobra de Valsalva.': { en: 'Exertional headache is triggered exclusively by vigorous physical activity or the Valsalva maneuver.' }
     };
 
+    const style = document.createElement('style');
+    style.textContent = `
+        .text-input { width: 50%; }
+        @media (max-width: 576px) {
+            .text-input { width: 100%; }
+        }
+        .help-text {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+    `;
+    document.head.appendChild(style);
+
     function t(str) {
         return lang === 'en' && dict[str] ? dict[str].en : str;
     }
@@ -790,7 +804,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function toggleHelp(btn) {
         const helpText = btn.closest('.mb-4').querySelector('.help-text');
         if (helpText) {
-            helpText.classList.toggle('d-none');
+            if (helpText.style.maxHeight && helpText.style.maxHeight !== '0px') {
+                helpText.style.maxHeight = '0';
+            } else {
+                helpText.style.maxHeight = helpText.scrollHeight + 'px';
+            }
         }
     }
 
@@ -846,14 +864,14 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 const input = document.createElement('input');
                 input.type = 'text';
-                input.className = 'form-control';
+                input.className = 'form-control text-input';
                 input.addEventListener('input', e => handleChange(item.q, e.target.value));
                 qDiv.appendChild(input);
             }
 
             if (item.help) {
                 const helpDiv = document.createElement('div');
-                helpDiv.className = 'help-text small text-muted d-none mb-2';
+                helpDiv.className = 'help-text small text-muted mb-2';
                 helpDiv.textContent = t(item.help);
                 qDiv.appendChild(helpDiv);
             }
