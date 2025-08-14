@@ -125,6 +125,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
         textarea {
             width: 100%;
         }
+
+        .btn-group.flex-wrap {
+            width: 100% !important;
+        }
     }
 </style>
 <body>

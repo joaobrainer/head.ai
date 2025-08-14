@@ -860,6 +860,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (item.options) {
                 const group = document.createElement('div');
                 group.className = 'btn-group flex-wrap';
+                group.style.width = '30%';
                 item.options.forEach(opt => {
                     const btn = document.createElement('button');
                     btn.type = 'button';
