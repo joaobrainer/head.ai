@@ -85,6 +85,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
         resize: none;
     }
 
+    #anamnese-response {
+        width: 80%;
+    }
+
     .side-graphics {
         position: absolute;
         right: 10px;
@@ -132,6 +136,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         .btn-group.flex-wrap {
             width: 100% !important;
+        }
+
+        #anamnese-response {
+            width: 90%;
         }
     }
 </style>
