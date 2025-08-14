@@ -5,6 +5,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <html lang="pt-br">
 <?php $this->load->view('header'); ?>
 <style>
+    body {
+        height: 100vh;
+        background-color: #FDFBF5;
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+    }
+
+    .body {
+        color: #1B2D59;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .header-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 2rem;
+    }
+
+    .header-icons img {
+        margin-right: 10px;
+    }
+
     .buttons-container {
         display: flex;
         justify-content: center;
@@ -79,15 +106,30 @@ defined('BASEPATH') or exit('No direct script access allowed');
         .button.primary {
             width: 80%;
         }
+
+        .side-graphics {
+            display: none;
+        }
+
+        .header-icons {
+            margin-top: 1rem;
+        }
     }
 </style>
 <body>
-    <div class="container py-4" id="questionnaire"></div>
-    <div class="side-graphics">
-        <img class="imagens-estaticas" style="height: 155px; width: 77px; margin-right: 10px;" src="<?= base_url('assets/images/background/14.png')  ?>" alt="">
-        <img class="imagens-estaticas" style="height: 77px; width: 77px; margin-right: 10px;" src="<?= base_url('assets/images/background/19.png')  ?>" alt="">
-        <img class="imagens-estaticas" style="height: 165px; width: 77px;" src="<?= base_url('assets/images/background/15.png')  ?>" alt="">
-        <img class="imagens-estaticas" style="height: 170px; width: 77px;" src="<?= base_url('assets/images/background/8.png')  ?>" alt="">
+    <div class="body">
+        <div class="header-icons">
+            <img class="imagens-estaticas" style="height: 80px; width: 80px;" src="<?= base_url('assets/images/background/24.png')  ?>" alt="">
+            <img class="imagens-estaticas" style="height: 80px; width: 80px;" src="<?= base_url('assets/images/background/23.png')  ?>" alt="">
+            <img class="imagens-estaticas" style="height: 80px; width: 80px;" src="<?= base_url('assets/images/background/22.png')  ?>" alt="">
+        </div>
+        <div class="container py-4" id="questionnaire"></div>
+        <div class="side-graphics">
+            <img class="imagens-estaticas" style="height: 155px; width: 77px; margin-right: 10px;" src="<?= base_url('assets/images/background/14.png')  ?>" alt="">
+            <img class="imagens-estaticas" style="height: 77px; width: 77px; margin-right: 10px;" src="<?= base_url('assets/images/background/19.png')  ?>" alt="">
+            <img class="imagens-estaticas" style="height: 165px; width: 77px;" src="<?= base_url('assets/images/background/15.png')  ?>" alt="">
+            <img class="imagens-estaticas" style="height: 170px; width: 77px;" src="<?= base_url('assets/images/background/8.png')  ?>" alt="">
+        </div>
     </div>
     <div class="buttons-container">
         <button class="button back" id="backBtn">Voltar</button>
