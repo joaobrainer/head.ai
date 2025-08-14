@@ -829,6 +829,10 @@ document.addEventListener('DOMContentLoaded', function () {
         questions.filter(item => item.section === section).forEach(item => {
             const qDiv = document.createElement('div');
             qDiv.className = 'mb-4';
+            qDiv.style.display = 'flex';
+            qDiv.style.flexWrap = 'wrap';
+            qDiv.style.alignContent = 'flex-start';
+            qDiv.style.flexDirection = 'column';
 
             const label = document.createElement('label');
             label.className = 'form-label fw-medium';
