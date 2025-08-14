@@ -18,7 +18,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        text-align: center;
+        text-align: left;
     }
 
     .header-icons {
@@ -76,6 +76,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
         background-color: #0F1C3A;
     }
 
+    textarea {
+        width: 50%;
+        resize: none;
+    }
+
     .side-graphics {
         position: absolute;
         right: 10px;
@@ -113,6 +118,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         .header-icons {
             margin-top: 1rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        textarea {
+            width: 100%;
         }
     }
 </style>
