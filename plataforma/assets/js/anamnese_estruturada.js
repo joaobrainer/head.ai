@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
         'Gradualmente': { en: 'Gradually' },
         'Classificar': { en: 'Classify' },
         'Voltar': { en: 'Back' },
-        'Log de Perguntas e Respostas:': { en: 'Question and Answer Log:' },
+        'Tentar novamente': { en: 'Try again' },
+        'Classificando anamnese...': { en: 'Classifying anamnesis...' },
         'Características da Dor': { en: 'Pain Characteristics' },
         'Fatores Desencadeantes': { en: 'Trigger Factors' },
         'Sintomas Associados': { en: 'Associated Symptoms' },
@@ -181,7 +182,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('submitBtn').textContent = t('Classificar');
     document.getElementById('backBtn').textContent = t('Voltar');
-    document.querySelector('#logContainer h4').textContent = t('Log de Perguntas e Respostas:');
+    document.getElementById('retryBtn').textContent = t('Tentar novamente');
+    document.getElementById('spinner-text').textContent = t('Classificando anamnese...');
 
     const questions = [
         /* Características da dor */
@@ -904,8 +906,38 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
         const log = lines.join('\n');
-        document.getElementById('log').textContent = log;
-        document.getElementById('logContainer').style.display = 'block';
+
+        document.getElementById('questionnaire').style.display = 'none';
+        document.getElementById('submitBtn').style.display = 'none';
+        document.getElementById('div-spinner').style.display = 'block';
+
+        $.ajax({
+            type: 'POST',
+            url: window.ANAMNESE_CLASSIFY_URL,
+            data: { text: log, lang },
+            success: function(response) {
+                $('#div-spinner').hide();
+                $('#anamnese-response').show();
+                let treatedResponse = response;
+                if (response !== 'Nenhuma resposta encontrada.' && response !== 'No response found.') {
+                    treatedResponse = treatedResponse.replace(/【[^】]*】/g, '');
+                    treatedResponse = treatedResponse.replace(/\*\*(.+?)\*\*/g, '<strong>$1<\/strong>');
+                    treatedResponse = treatedResponse.replace(/(\d+\.)/g, '<br><br>$1');
+                    $('#response-content').html(treatedResponse);
+                } else {
+                    if (lang === 'en') {
+                        $('#response-content').html('Unable to classify the anamnesis. Please try again.');
+                    } else {
+                        $('#response-content').html('Não foi possível classificar a anamnese. Tente novamente.');
+                    }
+                }
+                $('#retryBtn').show();
+            }
+        });
+    });
+
+    document.getElementById('retryBtn').addEventListener('click', function () {
+        location.reload();
     });
 });
 

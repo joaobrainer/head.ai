@@ -139,6 +139,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <img class="imagens-estaticas" style="height: 80px; width: 80px;" src="<?= base_url('assets/images/background/22.png')  ?>" alt="">
         </div>
         <div class="container py-4" id="questionnaire"></div>
+        <div id="div-spinner" style="display: none;">
+            <div id="spinner" style="display: flex; align-items: center; justify-content: center; min-height: 380px;">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p id="spinner-text" style="margin-left: 10px; margin-top: 1rem">Classificando anamnese...</p>
+            </div>
+        </div>
+        <div id="anamnese-response" style="display: none; margin: 20px auto; padding: 20px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px; overflow-y: auto; max-height: 320px; height: 310px;">
+            <div id="response-content"></div>
+        </div>
         <div class="side-graphics">
             <img class="imagens-estaticas" style="height: 155px; width: 77px; margin-right: 10px;" src="<?= base_url('assets/images/background/14.png')  ?>" alt="">
             <img class="imagens-estaticas" style="height: 77px; width: 77px; margin-right: 10px;" src="<?= base_url('assets/images/background/19.png')  ?>" alt="">
@@ -149,12 +158,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div class="buttons-container">
         <a href="<?= base_url('menu') ?>" class="button back" id="backBtn">Voltar</a>
         <button class="button primary" id="submitBtn">Classificar</button>
-    </div>
-    <div class="container pb-5">
-        <div id="logContainer" class="mt-4" style="display:none;">
-            <h4 class="fw-semibold mb-2">Log de Perguntas e Respostas:</h4>
-            <pre id="log" class="bg-light p-3 rounded"></pre>
-        </div>
+        <button class="button primary" id="retryBtn" style="display: none;">Tentar novamente</button>
     </div>
 </body>
 
@@ -162,6 +166,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 <script>
     window.ANAMNESE_LANG = typeof getLang === 'function' ? getLang() : 'en';
+    window.ANAMNESE_CLASSIFY_URL = "<?= base_url('casoclinico/classificar') ?>";
 </script>
 <script src="<?= base_url('assets/js/anamnese_estruturada.js') ?>"></script>
 
