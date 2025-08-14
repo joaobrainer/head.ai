@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'Abruptamente': { en: 'Abruptly' },
         'Gradualmente': { en: 'Gradually' },
         'Classificar': { en: 'Classify' },
+        'Voltar': { en: 'Back' },
         'Log de Perguntas e Respostas:': { en: 'Question and Answer Log:' },
         'Características da Dor': { en: 'Pain Characteristics' },
         'Fatores Desencadeantes': { en: 'Trigger Factors' },
@@ -179,6 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.getElementById('submitBtn').textContent = t('Classificar');
+    document.getElementById('backBtn').textContent = t('Voltar');
     document.querySelector('#logContainer h4').textContent = t('Log de Perguntas e Respostas:');
 
     const questions = [
