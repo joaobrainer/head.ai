@@ -143,7 +143,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </div>
     </div>
     <div class="buttons-container">
-        <button class="button back" id="backBtn">Voltar</button>
+        <a href="<?= base_url('menu') ?>" class="button back" id="backBtn">Voltar</a>
         <button class="button primary" id="submitBtn">Classificar</button>
     </div>
     <div class="container pb-5">
