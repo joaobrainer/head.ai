@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'A dor de cabeça começa no pescoço ou região occipital e piora com movimentos do pescoço ou ao pressionar essa área?': { en: 'Does the headache start in the neck or occipital region and worsen with neck movement or pressure on that area?' },
         'Você já teve uma dor de cabeça de início abrupto, extremamente intensa, que atingiu sua máxima intensidade em menos de um minuto e durou pelo menos cinco minutos?': { en: 'Have you ever had a headache with abrupt onset, extremely intense, reaching peak intensity in less than one minute and lasting at least five minutes?' },
         'Suas dores de cabeça costumam ser bilaterais, com sensação de pressão ou aperto (não pulsátil), de intensidade leve a moderada e não se agravam com atividades físicas de rotina, além de não causarem náuseas ou vômitos?': { en: 'Are your headaches usually bilateral, with a pressing or tightening sensation (non-pulsating), mild to moderate in intensity, not aggravated by routine physical activity, and without nausea or vomiting?' },
-        'Se você é mulher, as crises de enxaqueca costumam ocorrer no período de dois dias antes até três dias após a menstruação em pelo menos dois ciclos de três meses consecutivos?': { en: 'If you are a woman, do migraine attacks usually occur from two days before to three days after menstruation in at least two of three consecutive cycles?' },
+        'Se você é mulher, as crises de enxaqueca costumam ocorrer no período de dois dias antes até três dias após a menstruação em pelo menos dois ciclos de três meses consecutivos?': { en: 'If you are a woman, do headache attacks usually occur from two days before to three days after menstruation in at least two of three consecutive cycles?' },
         'Você teve um episódio de dor de cabeça associado a sintomas de arterite temporal, como dor ao mastigar?': { en: 'Have you had a headache episode associated with temporal arteritis symptoms, such as jaw claudication?' },
         'Você teve um episódio de dor de cabeça com sensibilidade no couro cabeludo?': { en: 'Have you had a headache episode with scalp tenderness?' },
         'Você teve um episódio de dor de cabeça com perda visual?': { en: 'Have you had a headache episode with vision loss?' },
@@ -660,12 +660,12 @@ document.addEventListener('DOMContentLoaded', function () {
             options: ["Sim", "Não"],
             help: "A chamada “cefaleia em trovoada” é descrita como uma dor de cabeça súbita de início explosivo, que atinge intensidade máxima em 60 segundos e persiste por pelo menos cinco minutos. Essa forma de dor intensa é considerada uma emergência e exige investigação imediata."
         },
-        {
-            section: "Cefaleias Especiais",
-            q: "Suas dores de cabeça costumam ser bilaterais, com sensação de pressão ou aperto (não pulsátil), de intensidade leve a moderada e não se agravam com atividades físicas de rotina, além de não causarem náuseas ou vômitos?",
-            options: ["Sim", "Não"],
-            help: "A cefaleia tipo tensional é a forma mais comum de dor de cabeça. Os episódios podem durar de 30 minutos a sete dias; devem ter pelo menos duas das seguintes características: localização bilateral, sensação de aperto ou pressão, intensidade leve ou moderada e não serem agravados por atividades físicas do dia a dia. Nessa condição não há náuseas ou vômitos, e a dor geralmente não é pulsátil."
-        },
+        // {
+        //     section: "Cefaleias Especiais",
+        //     q: "Suas dores de cabeça costumam ser bilaterais, com sensação de pressão ou aperto (não pulsátil), de intensidade leve a moderada e não se agravam com atividades físicas de rotina, além de não causarem náuseas ou vômitos?",
+        //     options: ["Sim", "Não"],
+        //     help: "A cefaleia tipo tensional é a forma mais comum de dor de cabeça. Os episódios podem durar de 30 minutos a sete dias; devem ter pelo menos duas das seguintes características: localização bilateral, sensação de aperto ou pressão, intensidade leve ou moderada e não serem agravados por atividades físicas do dia a dia. Nessa condição não há náuseas ou vômitos, e a dor geralmente não é pulsátil."
+        // },
         {
             section: "Cefaleias Especiais",
             q: "Se você é mulher, as crises de enxaqueca costumam ocorrer no período de dois dias antes até três dias após a menstruação em pelo menos dois ciclos de três meses consecutivos?",
