@@ -103,5 +103,23 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </div>
     </div>
 </body>
+
+<?php $this->load->view('footer'); ?>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const lang = typeof getLang === 'function' ? getLang() : 'en';
+        if (lang === 'en') {
+            const buttons = document.querySelectorAll('.buttons-container .button');
+            if (buttons[0]) {
+                buttons[0].textContent = 'Insert clinical case';
+            }
+            if (buttons[1]) {
+                buttons[1].textContent = 'Structured Anamnesis';
+            }
+        }
+    });
+</script>
+
 </html>
 
