@@ -83,16 +83,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
             color: #273b74;
         }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.2rem;
-        }
-
         .card {
             background: #FFFFFF;
             border-radius: 18px;
-            padding: 1.4rem 1.5rem;
+            padding: 1.6rem 1.75rem;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
         }
 
@@ -183,136 +177,128 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </p>
         </section>
 
-        <div class="content-grid">
-            <article class="card">
-                <div class="section-title">1. About</div>
-                <h2>Origins and Concept</h2>
-                <p>
-                    Head.AI is a free clinical decision-support platform conceived and led by
-                    <a href="http://lattes.cnpq.br/3171245597498498" target="_blank" rel="noopener noreferrer">João Brainer Clares de Andrade</a>,
-                    neurologist and researcher in Health Informatics. The system was designed based on the full methodology and
-                    results described in a peer-reviewed BMC Neurology publication validating accuracy, calibration, and diagnostic performance.
-                </p>
-                <p>
-                    The platform was partially programmed by
-                    <a href="https://www.linkedin.com/in/danielsciarotta?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">Daniel Zaveri</a>,
-                    who contributed to core backend components and infrastructure integration.
-                </p>
-                <p>
-                    Head.AI uses a GPT-4o–based natural language processing architecture combined with an expert-curated ICHD-3 ontology, integrating:
-                </p>
-                <ul>
-                    <li>The full hierarchical structure of the ICHD-3.</li>
-                    <li>A structured JSON knowledge base containing diagnostic criteria, codes, minimum episode durations, and phenotype metadata.</li>
-                    <li>Standardized prompt engineering, validity checks, and fallback routines to ensure output consistency.</li>
-                </ul>
-                <p>As demonstrated in the scientific validation (heatmaps in Figures 1–3 and logistic regression results), the platform achieved:</p>
-                <ul>
-                    <li>89.5% first-hypothesis diagnostic accuracy, outperforming Claude Sonnet 4.0, Grok 3.0, and Gemini 2.5.</li>
-                    <li>A citation rate &gt;97%, with only 7/315 cases uncited.</li>
-                    <li>High calibration, with a Brier Score of 0.153.</li>
-                </ul>
-                <p>
-                    The platform supports multilingual input and outputs standardized diagnostic labels in English for clinical research interoperability.
-                    No user data are stored, retained, or repurposed. The system operates within a secure environment compatible with GDPR and LGPD requirements.
-                </p>
-                <p class="reference">
-                    Andrade JBC, Costa TLBS, Vasconcelos JL, Lopes TLM, Balsells MD, Cristofolini VL, Querobin SO, Rezende Filho FM.
-                    Validation of an AI-based platform for structured diagnosis of headache disorders using ICHD-3 criteria. BMC Neurol.
-                    2025;25:489. doi:10.1186/s12883-025-04473-1.
-                </p>
-                <div class="disclaimer">
-                    Head.AI is intended for educational and decision-support purposes only. It does not provide medical diagnosis, treatment recommendations,
-                    or clinical directives. Users remain fully responsible for interpreting results and exercising professional judgment.
-                </div>
-            </article>
+        <article class="card">
+            <div class="section-title">1. About</div>
+            <h2>Origins and Concept</h2>
+            <p>
+                Head.AI is a free clinical decision-support platform conceived and led by
+                <a href="http://lattes.cnpq.br/3171245597498498" target="_blank" rel="noopener noreferrer">João Brainer Clares de Andrade</a>,
+                neurologist and researcher in Health Informatics. The system was designed based on the full methodology and
+                results described in a peer-reviewed BMC Neurology publication validating accuracy, calibration, and diagnostic performance.
+            </p>
+            <p>
+                The platform was partially programmed by
+                <a href="https://www.linkedin.com/in/danielsciarotta?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">Daniel Zaveri</a>,
+                who contributed to core backend components and infrastructure integration.
+            </p>
+            <p>
+                Head.AI uses a GPT-4o–based natural language processing architecture combined with an expert-curated ICHD-3 ontology, integrating:
+            </p>
+            <ul>
+                <li>The full hierarchical structure of the ICHD-3.</li>
+                <li>A structured JSON knowledge base containing diagnostic criteria, codes, minimum episode durations, and phenotype metadata.</li>
+                <li>Standardized prompt engineering, validity checks, and fallback routines to ensure output consistency.</li>
+            </ul>
+            <p>As demonstrated in the scientific validation (heatmaps in Figures 1–3 and logistic regression results), the platform achieved:</p>
+            <ul>
+                <li>89.5% first-hypothesis diagnostic accuracy, outperforming Claude Sonnet 4.0, Grok 3.0, and Gemini 2.5.</li>
+                <li>A citation rate &gt;97%, with only 7/315 cases uncited.</li>
+                <li>High calibration, with a Brier Score of 0.153.</li>
+            </ul>
+            <p>
+                The platform supports multilingual input and outputs standardized diagnostic labels in English for clinical research interoperability.
+                No user data are stored, retained, or repurposed. The system operates within a secure environment compatible with GDPR and LGPD requirements.
+            </p>
+            <p class="reference">
+                Andrade JBC, Costa TLBS, Vasconcelos JL, Lopes TLM, Balsells MD, Cristofolini VL, Querobin SO, Rezende Filho FM.
+                Validation of an AI-based platform for structured diagnosis of headache disorders using ICHD-3 criteria. BMC Neurol.
+                2025;25:489. doi:10.1186/s12883-025-04473-1.
+            </p>
+            <div class="disclaimer">
+                Head.AI is intended for educational and decision-support purposes only. It does not provide medical diagnosis, treatment recommendations,
+                or clinical directives. Users remain fully responsible for interpreting results and exercising professional judgment.
+            </div>
 
-            <article class="card">
-                <div class="section-title">2. Purpose of the Platform</div>
-                <h2>Scope</h2>
-                <p>
-                    Head.AI is an online clinical decision-support and educational tool designed to assist users in structured classification of headache disorders based on the ICHD-3.
-                    The Platform uses NLP powered by GPT-4o and a curated knowledge base developed by experts.
-                </p>
-                <p>
-                    The Platform does not provide medical diagnosis, medical advice, therapeutic indication, or professional clinical services.
-                    All information is generated automatically and must be interpreted cautiously and critically.
-                </p>
+            <div class="section-title">2. Purpose of the Platform</div>
+            <h2>Scope</h2>
+            <p>
+                Head.AI is an online clinical decision-support and educational tool designed to assist users in structured classification of headache disorders based on the ICHD-3.
+                The Platform uses NLP powered by GPT-4o and a curated knowledge base developed by experts.
+            </p>
+            <p>
+                The Platform does not provide medical diagnosis, medical advice, therapeutic indication, or professional clinical services.
+                All information is generated automatically and must be interpreted cautiously and critically.
+            </p>
 
-                <div class="section-title">3. No Medical Advice</div>
-                <p>The Platform is not intended to substitute:</p>
-                <ul>
-                    <li>Clinical judgment or specialized neurological evaluation.</li>
-                    <li>Professional diagnosis or therapeutic decision-making.</li>
-                    <li>Emergency medical assessment.</li>
-                </ul>
-                <p>Users agree that:</p>
-                <ul>
-                    <li>The Platform does not establish a doctor–patient relationship.</li>
-                    <li>Results must not be used as the sole basis for diagnosis, treatment, or clinical decisions.</li>
-                    <li>The Platform cannot and does not guarantee accuracy, despite validated performance described in scientific publications.</li>
-                </ul>
+            <div class="section-title">3. No Medical Advice</div>
+            <p>The Platform is not intended to substitute:</p>
+            <ul>
+                <li>Clinical judgment or specialized neurological evaluation.</li>
+                <li>Professional diagnosis or therapeutic decision-making.</li>
+                <li>Emergency medical assessment.</li>
+            </ul>
+            <p>Users agree that:</p>
+            <ul>
+                <li>The Platform does not establish a doctor–patient relationship.</li>
+                <li>Results must not be used as the sole basis for diagnosis, treatment, or clinical decisions.</li>
+                <li>The Platform cannot and does not guarantee accuracy, despite validated performance described in scientific publications.</li>
+            </ul>
 
-                <div class="section-title">4. User Responsibilities</div>
-                <p>By using the Platform, the user agrees to:</p>
-                <ul>
-                    <li>Independently verify any information produced.</li>
-                    <li>Exercise full professional judgment before acting on any output.</li>
-                    <li>Assume all risks associated with clinical decisions.</li>
-                    <li>Use the Platform only for lawful, ethical, and non-diagnostic purposes.</li>
-                    <li>Not rely on the Platform for medical emergencies or time-sensitive conditions.</li>
-                </ul>
-            </article>
+            <div class="section-title">4. User Responsibilities</div>
+            <p>By using the Platform, the user agrees to:</p>
+            <ul>
+                <li>Independently verify any information produced.</li>
+                <li>Exercise full professional judgment before acting on any output.</li>
+                <li>Assume all risks associated with clinical decisions.</li>
+                <li>Use the Platform only for lawful, ethical, and non-diagnostic purposes.</li>
+                <li>Not rely on the Platform for medical emergencies or time-sensitive conditions.</li>
+            </ul>
 
-            <article class="card">
-                <div class="section-title">5. Privacy &amp; Data</div>
-                <h2>Data Handling</h2>
-                <p>The Platform:</p>
-                <ul>
-                    <li>Does not store, retain, or reuse user-submitted clinical data.</li>
-                    <li>Uses encrypted communication.</li>
-                    <li>Operates in compliance with relevant data protection regulations, including GDPR and LGPD.</li>
-                </ul>
-                <p>Users are responsible for ensuring that the information they enter does not contain identifiable patient data, unless allowed by applicable law and handled in accordance with institutional policies.</p>
+            <div class="section-title">5. Privacy &amp; Data</div>
+            <h2>Data Handling</h2>
+            <p>The Platform:</p>
+            <ul>
+                <li>Does not store, retain, or reuse user-submitted clinical data.</li>
+                <li>Uses encrypted communication.</li>
+                <li>Operates in compliance with relevant data protection regulations, including GDPR and LGPD.</li>
+            </ul>
+            <p>Users are responsible for ensuring that the information they enter does not contain identifiable patient data, unless allowed by applicable law and handled in accordance with institutional policies.</p>
 
-                <div class="section-title">6. Accuracy and Limitations</div>
-                <p>
-                    While the Platform demonstrated high diagnostic performance in published research—including 89.5% accuracy for first-hypothesis predictions and robust calibration (Brier Score 0.153)—the user acknowledges that:
-                </p>
-                <ul>
-                    <li>These results were derived from synthetic clinical vignettes.</li>
-                    <li>Real-world language variability, comorbidities, and ambiguity may alter performance.</li>
-                    <li>No system guarantees full correctness, completeness, or applicability.</li>
-                    <li>The Platform may generate incomplete, inconsistent, or non-clinically appropriate responses.</li>
-                </ul>
-                <p>The Platform is provided “as is” without warranties, express or implied.</p>
+            <div class="section-title">6. Accuracy and Limitations</div>
+            <p>
+                While the Platform demonstrated high diagnostic performance in published research—including 89.5% accuracy for first-hypothesis predictions and robust calibration (Brier Score 0.153)—the user acknowledges that:
+            </p>
+            <ul>
+                <li>These results were derived from synthetic clinical vignettes.</li>
+                <li>Real-world language variability, comorbidities, and ambiguity may alter performance.</li>
+                <li>No system guarantees full correctness, completeness, or applicability.</li>
+                <li>The Platform may generate incomplete, inconsistent, or non-clinically appropriate responses.</li>
+            </ul>
+            <p>The Platform is provided “as is” without warranties, express or implied.</p>
 
-                <div class="section-title">7. Intellectual Property</div>
-                <p>
-                    All intellectual property rights related to system design, knowledge base, clinical ontology, written content, research methodology, and platform architecture
-                    are owned by João Brainer Clares de Andrade. Users may not copy, reproduce, distribute, or modify the Platform or its outputs without prior written authorization.
-                </p>
-            </article>
+            <div class="section-title">7. Intellectual Property</div>
+            <p>
+                All intellectual property rights related to system design, knowledge base, clinical ontology, written content, research methodology, and platform architecture
+                are owned by João Brainer Clares de Andrade. Users may not copy, reproduce, distribute, or modify the Platform or its outputs without prior written authorization.
+            </p>
 
-            <article class="card">
-                <div class="section-title">8. Limitation of Liability</div>
-                <h2>Liability &amp; Legal</h2>
-                <p>
-                    To the fullest extent permitted by law, the Platform, its creators, and contributors shall not be liable for any direct, indirect, incidental, consequential,
-                    or special damages arising from use or inability to use the Platform. The owner and contributors assume no responsibility for clinical decisions, outcomes,
-                    or patient management actions. Users accept full responsibility for any decisions or interpretations derived from the Platform’s outputs.
-                </p>
+            <div class="section-title">8. Limitation of Liability</div>
+            <h2>Liability &amp; Legal</h2>
+            <p>
+                To the fullest extent permitted by law, the Platform, its creators, and contributors shall not be liable for any direct, indirect, incidental, consequential,
+                or special damages arising from use or inability to use the Platform. The owner and contributors assume no responsibility for clinical decisions, outcomes,
+                or patient management actions. Users accept full responsibility for any decisions or interpretations derived from the Platform’s outputs.
+            </p>
 
-                <div class="section-title">9. Amendments</div>
-                <p>We may update or modify these Terms of Use at any time. Continued use of the Platform constitutes acceptance of the updated terms.</p>
+            <div class="section-title">9. Amendments</div>
+            <p>We may update or modify these Terms of Use at any time. Continued use of the Platform constitutes acceptance of the updated terms.</p>
 
-                <div class="section-title">10. Governing Law</div>
-                <p>
-                    These Terms shall be governed by and interpreted in accordance with the laws of Brazil and relevant international regulations regarding digital services
-                    and clinical decision-support tools.
-                </p>
-            </article>
-        </div>
+            <div class="section-title">10. Governing Law</div>
+            <p>
+                These Terms shall be governed by and interpreted in accordance with the laws of Brazil and relevant international regulations regarding digital services
+                and clinical decision-support tools.
+            </p>
+        </article>
     </div>
 </body>
 <?php $this->load->view('footer'); ?>
