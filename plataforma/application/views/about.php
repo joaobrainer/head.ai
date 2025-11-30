@@ -145,7 +145,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: #6d7da8;
-            margin: 0 0 0.4rem;
+            margin: 1.4rem 0 0.4rem;
         }
 
         @media (max-width: 768px) {
