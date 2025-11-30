@@ -93,6 +93,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="buttons-container">
             <a href="<?= base_url('casoclinico') ?>" class="button">Inserir caso clínico</a>
             <a href="<?= base_url('anamnese-estruturada') ?>" class="button">Anamnese Estruturada</a>
+            <a href="<?= base_url('about') ?>" class="button">Sobre o Head.AI</a>
         </div>
 
         <div class="side-graphics">
@@ -116,6 +117,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
             }
             if (buttons[1]) {
                 buttons[1].textContent = 'Structured Anamnesis';
+            }
+            if (buttons[2]) {
+                buttons[2].textContent = 'About Head.AI';
             }
         }
     });
