@@ -62,9 +62,16 @@ class Home extends CI_Controller {
 		// Punção lombar: líquido cefalorraquidiano (LCR) claro, com pressão de abertura normal, sem hemácias ou xantocromia.
 
 
-		$this->load->view('casoclinico/home', $dados);
-	}
+                $this->load->view('casoclinico/home', $dados);
+        }
 
+
+       public function loadAbout() {
+
+               $dados['titulo'] = "HEAD.AI - About";
+
+               $this->load->view('about', $dados);
+       }
 
 
        public function classificar() {

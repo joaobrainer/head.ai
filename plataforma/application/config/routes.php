@@ -58,5 +58,7 @@ $route['casoclinico'] = 'home/loadCasoClinico';
 $route['casoclinico/classificar'] = 'home/classificar';
 $route['menu'] = 'home/menu';
 $route['anamnese-estruturada'] = 'home/loadAnamneseEstruturada';
+$route['about'] = 'home/loadAbout';
+$route['sobre'] = 'home/loadAbout';
 
 
